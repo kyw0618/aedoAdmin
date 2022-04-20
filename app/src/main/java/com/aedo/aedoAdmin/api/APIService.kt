@@ -4,6 +4,7 @@ import com.aedo.aedoAdmin.model.intro.AppPolicy
 import com.aedo.aedoAdmin.model.intro.Verification
 import com.aedo.aedoAdmin.model.login.AutoLogin
 import com.aedo.aedoAdmin.model.login.LoginSend
+import com.aedo.aedoAdmin.model.login.UserModel
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -24,4 +25,8 @@ interface APIService {
     // 로그인 API
     @PUT("v1/user")
     fun getLogin(@Body loginSend: LoginSend):Call<LoginSend>
+
+    //회원정보
+    @GET("v1/user")
+    fun getUser(@Header("Accesstoken")accesstoken: String?): Call<UserModel>
 }

@@ -14,6 +14,7 @@ import com.aedo.aedoAdmin.databinding.ActivityMainBinding
 import com.aedo.aedoAdmin.databinding.ActivitySplashBinding
 import com.aedo.aedoAdmin.model.intro.*
 import com.aedo.aedoAdmin.model.login.AutoLogin
+import com.aedo.aedoAdmin.model.login.UserModel
 import com.aedo.aedoAdmin.util.`object`.ActivityControlManager
 import com.aedo.aedoAdmin.util.`object`.Constant
 import com.aedo.aedoAdmin.util.`object`.Constant.RESULT_TRUE
@@ -180,13 +181,66 @@ class SplashActivity : BaseActivity() {
                 else if(response.code() == 200){
                     getPreferences(0).edit().remove("PREF_ACCESS_TOKEN").apply()
                     prefs.newaccesstoken=result?.accesstoken
-                    moveMain()
+                    userAPI()
                     Toast.makeText(this@SplashActivity,"자동로그인이 되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<AutoLogin>, t: Throwable) {
                 Log.d(TAG, "requestLogin error -> $t")
                 serverDialog()
+            }
+        })
+    }
+
+    private fun userAPI() {
+        LLog.e("회원정보 API")
+        apiServices.getUser(MyApplication.prefs.myaccesstoken).enqueue(object :
+            Callback<UserModel> {
+            override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+                    if (result.admin == false) {
+                        moveMain()
+                    }
+                    else {
+                        adminLogin()
+                    }
+                }
+                else {
+                    Log.d(TAG,"GetUser API ERROR -> ${response.errorBody()}")
+                    otherAPI()
+                }
+            }
+
+            override fun onFailure(call: Call<UserModel>, t: Throwable) {
+                Log.d(TAG,"GetUser ERROR -> $t")
+
+            }
+        })
+    }
+
+    private fun otherAPI() {
+        LLog.e("회원정보_두번째 API")
+        apiServices.getUser(MyApplication.prefs.myaccesstoken).enqueue(object :
+            Callback<UserModel> {
+            override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+                    if (result.admin == false) {
+                        moveMain()
+                    }
+                    else {
+                        adminLogin()
+                    }
+                }
+                else {
+                    Log.d(TAG,"GetUser SECOND API ERROR -> ${response.errorBody()}")
+                }
+            }
+
+            override fun onFailure(call: Call<UserModel>, t: Throwable) {
+                Log.d(TAG,"GetUser SECOND ERROR -> $t")
+
             }
         })
     }

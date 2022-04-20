@@ -55,6 +55,7 @@
     <string name="service_disable_error">서비스 점검중입니다.\n잠시 후에 다시 시도해 주세요.</string>
     <string name="need_update_app">앱 업데이트가 필요합니다.\n업데이트를 진행해 주세요.</string>
     <string name="auth_num_wrong_text">인증번호가 잘못되었습니다.</string>
+    <string name="admin_check">관리자 권한이 필요합니다.</string>
 
 
     <string name="warning_close_app">앱을 종료하시겠습니까?</string>

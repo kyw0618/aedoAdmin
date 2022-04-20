@@ -247,6 +247,21 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    internal fun adminLogin() {
+        val myLayout = layoutInflater.inflate(R.layout.one_button_dialog, null)
+        val build = AlertDialog.Builder(this).apply {
+            setView(myLayout)
+        }
+        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
+        textView.text = getString(R.string.admin_check)
+        val dialog = build.create()
+        dialog.show()
+
+        myLayout.ok_btn.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
     internal fun termcheck() {
         val myLayout = layoutInflater.inflate(R.layout.one_button_dialog, null)
         val build = AlertDialog.Builder(this).apply {
