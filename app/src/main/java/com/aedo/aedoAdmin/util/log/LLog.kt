@@ -1,7 +1,7 @@
 package com.aedo.aedoAdmin.util.log
 
 import android.util.Log
-import androidx.databinding.ktx.BuildConfig
+import com.aedo.aedoAdmin.BuildConfig
 import com.aedo.aedoAdmin.util.`object`.Constant
 
 object LLog {

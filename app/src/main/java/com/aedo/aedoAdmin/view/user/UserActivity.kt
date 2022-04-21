@@ -1,52 +1,24 @@
-package com.aedo.aedoAdmin.view.main
+package com.aedo.aedoAdmin.view.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.aedo.aedoAdmin.R
 import com.aedo.aedoAdmin.api.APIService
 import com.aedo.aedoAdmin.api.ApiUtils
 import com.aedo.aedoAdmin.databinding.ActivityMainBinding
+import com.aedo.aedoAdmin.databinding.ActivityUserBinding
 import com.aedo.aedoAdmin.util.base.BaseActivity
 
-class MainActivity : BaseActivity() {
-    private lateinit var mBinding : ActivityMainBinding
+class UserActivity : BaseActivity() {
+    private lateinit var mBinding : ActivityUserBinding
     private lateinit var apiServices: APIService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_user)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
-
-    }
-
-    fun onMakeClick(v: View) {
-
-    }
-
-    fun onSendClick(v: View) {
-
-    }
-
-    fun onCenterClick(v: View) {
-
-    }
-
-    fun onSearchClick(v: View) {
-
-    }
-
-    fun onShopClick(v: View) {
-
-    }
-
-    fun onSetting(v: View) {
-
-    }
-
-    fun onNoticeCLick(v: View) {
 
     }
 }

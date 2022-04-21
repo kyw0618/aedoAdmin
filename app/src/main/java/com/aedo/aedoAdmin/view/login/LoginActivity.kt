@@ -47,7 +47,6 @@ class LoginActivity : BaseActivity() {
     private lateinit var mBinding: ActivityLoginBinding
     private lateinit var apiServices: APIService
     private var mViewModel: LoginViewModel? = null
-    private val adminKey = "true"
 
     companion object {
         const val PROCESS_PHONENUM = 0
@@ -153,25 +152,6 @@ class LoginActivity : BaseActivity() {
         mBinding.btnOk.text = getString(R.string.login_btn_sms_send)
     }
 
-    private fun phoneSecond() {
-        if(mBinding.clAuthNumParent.visibility== View.GONE) {
-            mBinding.clAuthNumParent.visibility= View.VISIBLE
-            mBinding.tvPhonenumAuth.text = mBinding.etPhonenum.text.toString()
-        }
-        mBinding.tvTitle.text = getString(R.string.login_desc2)
-        mBinding.tvTitleSub.text = getText(R.string.login_subtitle2)
-        if (mBinding.tvTitleSub.visibility == View.GONE) {
-            mBinding.tvTitleSub.visibility = View.VISIBLE
-        }
-        if(mBinding.btnOk2.visibility == View.GONE) {
-            mBinding.btnOk2.visibility = View.GONE
-        }
-        mBinding.btnOk.text = getString(R.string.ok)
-        mBinding.etAuthnum.requestFocus()
-        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
-    }
-
 
     private fun phoneThrid() {
         mBinding.tvTitle.text = Html.fromHtml(getString(R.string.login_desc3))
@@ -223,70 +203,17 @@ class LoginActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&&result!=null) {
                     prefs.myaccesstoken = result.accesstoken.toString()
-                    userAPI()
+                    moveMain()
                 }
                 else {
                     if (response.code() == 404) {
-                        phoneSecond()
                         prefs.myaccesstoken = result?.accesstoken.toString()
+                        adminLogin()
                     }
                 }
             }
             override fun onFailure(call: Call<LoginSend>, t: Throwable) {
                 Log.d(TAG,"authrequest ERROR -> $t")
-            }
-        })
-    }
-
-    private fun userAPI() {
-        LLog.e("회원정보 API")
-        apiServices.getUser(prefs.myaccesstoken).enqueue(object :
-            Callback<UserModel> {
-            override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
-                val result = response.body()
-                if(response.isSuccessful&& result!= null) {
-                   if (result.admin == false) {
-                       moveMain()
-                   }
-                    else {
-                        adminLogin()
-                   }
-                }
-                else {
-                    Log.d(TAG,"GetUser API ERROR -> ${response.errorBody()}")
-                    otherAPI()
-                }
-            }
-
-            override fun onFailure(call: Call<UserModel>, t: Throwable) {
-                Log.d(TAG,"GetUser ERROR -> $t")
-
-            }
-        })
-    }
-
-    private fun otherAPI() {
-        LLog.e("회원정보_두번째 API")
-        apiServices.getUser(prefs.myaccesstoken).enqueue(object :
-            Callback<UserModel> {
-            override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
-                val result = response.body()
-                if(response.isSuccessful&& result!= null) {
-                    if (result.admin == false) {
-                        moveMain()
-                    }
-                    else {
-                        adminLogin()
-                    }
-                }
-                else {
-                    Log.d(TAG,"GetUser SECOND API ERROR -> ${response.errorBody()}")
-                }
-            }
-
-            override fun onFailure(call: Call<UserModel>, t: Throwable) {
-                Log.d(TAG,"GetUser SECOND ERROR -> $t")
-
             }
         })
     }
