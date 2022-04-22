@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
-
+        inStatusBar()
     }
 
     fun onMakeClick(v: View) {

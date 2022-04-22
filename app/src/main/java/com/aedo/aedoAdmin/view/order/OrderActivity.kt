@@ -2,6 +2,7 @@ package com.aedo.aedoAdmin.view.order
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.aedo.aedoAdmin.R
 import com.aedo.aedoAdmin.api.APIService
@@ -19,6 +20,14 @@ class OrderActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_order)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        inStatusBar()
+    }
 
+    fun onMainClick(v: View) {
+        moveMain()
+    }
+
+    fun onBackClick(v: View) {
+        moveMain()
     }
 }

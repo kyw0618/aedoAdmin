@@ -8,4 +8,9 @@
             name="activity"
             type="com.aedo.aedoAdmin.view.user.UserActivity" />
     </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
