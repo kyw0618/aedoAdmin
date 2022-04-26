@@ -28,6 +28,7 @@ import com.aedo.aedoAdmin.api.APIService
 import com.aedo.aedoAdmin.api.ApiUtils
 import com.aedo.aedoAdmin.databinding.ActivityLoginBinding
 import com.aedo.aedoAdmin.model.intro.Policy
+import com.aedo.aedoAdmin.model.login.LoginSMS
 import com.aedo.aedoAdmin.model.login.LoginSend
 import com.aedo.aedoAdmin.model.login.UserModel
 import com.aedo.aedoAdmin.util.base.BaseActivity
@@ -45,8 +46,9 @@ import retrofit2.Response
 class LoginActivity : BaseActivity() {
 
     private lateinit var mBinding: ActivityLoginBinding
-    private lateinit var apiServices: APIService
     private var mViewModel: LoginViewModel? = null
+
+    private lateinit var apiServices: APIService
 
     companion object {
         const val PROCESS_PHONENUM = 0
@@ -55,11 +57,11 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        mBinding.activity = this
+        mBinding.activity = this@LoginActivity
         mBinding.viewModel = mViewModel
-        apiServices = ApiUtils.apiService
         mBinding.tvTitle.text = Html.fromHtml(getString(R.string.login_desc1))
         mBinding.tvTitleSub.text = getText(R.string.login_subtitle1)
+        apiServices = ApiUtils.apiService
         inStatusBar()
         initView()
     }
@@ -152,6 +154,25 @@ class LoginActivity : BaseActivity() {
         mBinding.btnOk.text = getString(R.string.login_btn_sms_send)
     }
 
+    private fun phoneSecond() {
+        if(mBinding.clAuthNumParent.visibility==View.GONE) {
+            mBinding.clAuthNumParent.visibility=View.VISIBLE
+            mBinding.tvPhonenumAuth.text = mBinding.etPhonenum.text.toString()
+        }
+        mBinding.tvTitle.text = getString(R.string.login_desc2)
+        mBinding.tvTitleSub.text = getText(R.string.login_subtitle2)
+        if (mBinding.tvTitleSub.visibility == View.GONE) {
+            mBinding.tvTitleSub.visibility = View.VISIBLE
+        }
+        if(mBinding.btnOk2.visibility == View.GONE) {
+            mBinding.btnOk2.visibility = View.GONE
+        }
+        mBinding.btnOk.text = getString(R.string.ok)
+        mBinding.etAuthnum.requestFocus()
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    }
+
 
     private fun phoneThrid() {
         mBinding.tvTitle.text = Html.fromHtml(getString(R.string.login_desc3))
@@ -161,6 +182,10 @@ class LoginActivity : BaseActivity() {
         }
         if(mBinding.clCheck.visibility == View.GONE) {
             mBinding.clCheck.visibility = View.VISIBLE
+        }
+        if(mBinding.clJoinParent.visibility==View.GONE) {
+            mBinding.clJoinParent.visibility=View.VISIBLE
+            mBinding.tvPhonenumJoin.text = mBinding.etPhonenum.text.toString()
         }
         if (mBinding.clOk2.visibility == View.GONE) {
             mBinding.clOk2.visibility = View.VISIBLE
@@ -195,10 +220,35 @@ class LoginActivity : BaseActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
+    private fun sendsms() {
+        LLog.e("로그인_문자메세지 API")
+        if (mBinding.clOk.visibility == View.VISIBLE) {
+            mBinding.clOk.visibility = View.GONE
+        }
+        val data = LoginSMS(mBinding.etPhonenum.text.toString())
+        apiServices.getSMS(data).enqueue(object : Callback<LoginSMS> {
+            override fun onResponse(call: Call<LoginSMS>, response: Response<LoginSMS>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+
+                }
+                else {
+                    Log.d(TAG,"sendsms API ERROR -> ${response.errorBody()}")
+                }
+            }
+            override fun onFailure(call: Call<LoginSMS>, t: Throwable) {
+                Log.d(TAG,"sendsms ERROR -> $t")
+            }
+        })
+    }
+
     private fun authrequest() {
         LLog.e("로그인_로그인 API")
-        val phone = LoginSend(phone = mBinding.etPhonenum.text.toString())
-        apiServices.getLogin(phone).enqueue(object : Callback<LoginSend> {
+        val phone = mBinding.etPhonenum.text.toString()
+        val smsnumber = mBinding.etAuthnum.text.toString()
+
+        val data = LoginSend(phone, smsnumber )
+        apiServices.getLogin(data).enqueue(object : Callback<LoginSend> {
             override fun onResponse(call: Call<LoginSend>, response: Response<LoginSend>) {
                 val result = response.body()
                 if(response.isSuccessful&&result!=null) {
@@ -207,8 +257,8 @@ class LoginActivity : BaseActivity() {
                 }
                 else {
                     if (response.code() == 404) {
+                        phoneThrid()
                         prefs.myaccesstoken = result?.accesstoken.toString()
-                        adminLogin()
                     }
                 }
             }
@@ -232,26 +282,45 @@ class LoginActivity : BaseActivity() {
     }
 
     fun onCheckClick(v: View) {
-        val et_auth = mBinding.etAuthnum.text.toString()
-        if (prefs.mysms.equals(et_auth)) {
-            phoneThrid()
-        }
-        else {
-            smscheck()
-        }
+        authrequest()
     }
 
     fun onOkClick(v: View?) {
-
+        val et_birth = mBinding.etBitrhday.text.toString()
+        val et_name = mBinding.etName.text.toString()
+        when {
+            et_birth.length<6 -> {
+                Toast.makeText(this,"생년월일 6자리를 입력해 주세요",Toast.LENGTH_LONG).show()
+                return
+            }
+            et_name.isEmpty() -> {
+                Toast.makeText(this,"이름을 입력해 주세요",Toast.LENGTH_LONG).show()
+                return
+            }
+            else ->{
+                realm.executeTransaction { realm ->
+                    var termsVersion = "N"
+                    for (rPolicy in realm.where(Policy::class.java)
+                        .equalTo("id", "TERMS_VER").findAll()) {
+                        termsVersion = rPolicy.value.toString()
+                    }
+                    if (termsVersion == "Y") {
+                        Toast.makeText(this,"약관 버전이 유효하지 않습니다.",Toast.LENGTH_SHORT).show()
+                        return@executeTransaction
+                    }
+                }
+            }
+        }
     }
 
-    fun onSendClick(v: View?){
+    fun onSendClick(v:View?){
         val et_phone = mBinding.etPhonenum.text.toString()
         if (et_phone.length<10) {
             phonecheck()
         }
         else {
-            authrequest()
+            phoneSecond()
+            sendsms()
         }
     }
 }

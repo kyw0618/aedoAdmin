@@ -3,6 +3,7 @@ package com.aedo.aedoAdmin.api
 import com.aedo.aedoAdmin.model.intro.AppPolicy
 import com.aedo.aedoAdmin.model.intro.Verification
 import com.aedo.aedoAdmin.model.login.AutoLogin
+import com.aedo.aedoAdmin.model.login.LoginSMS
 import com.aedo.aedoAdmin.model.login.LoginSend
 import com.aedo.aedoAdmin.model.login.UserModel
 import retrofit2.Call
@@ -25,6 +26,10 @@ interface APIService {
     // 로그인 API
     @PUT("v1/user")
     fun getLogin(@Body loginSend: LoginSend):Call<LoginSend>
+
+    // 문자인증 API
+    @POST("v1/user/sms")
+    fun getSMS(@Body loginSMS: LoginSMS): Call<LoginSMS>
 
     //회원정보
     @GET("v1/user")

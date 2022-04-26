@@ -176,7 +176,7 @@ class SplashActivity : BaseActivity() {
                 val result = response.body()
                 if (response.code() == 404 || response.code() == 401) {
                     prefs.newaccesstoken=result?.accesstoken
-                    adminLogin()
+                    moveLogin()
                 }
                 else if(response.code() == 200){
                     getPreferences(0).edit().remove("PREF_ACCESS_TOKEN").apply()

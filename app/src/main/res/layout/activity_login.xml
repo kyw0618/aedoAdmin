@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -7,12 +8,11 @@
         <variable
             name="activity"
             type="com.aedo.aedoAdmin.view.login.LoginActivity" />
-
         <variable
             name="viewModel"
             type="com.aedo.aedoAdmin.viewmodel.LoginViewModel" />
-
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -389,6 +389,127 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_join_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:visibility="visible"
+                        android:visibility="gone"
+                        android:layout_marginTop="44dp">
+
+                        <TextView
+                            android:id="@+id/tv_phonenum_join_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:textColor="@color/gray6"
+                            android:textSize="@dimen/common_font_text"
+                            android:text="@string/login_title_phone_number_auth"
+                            android:fontFamily="@font/notosans_medium"/>
+                        <TextView
+                            android:id="@+id/tv_phonenum_join"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toBottomOf="@id/tv_phonenum_join_title"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:textColor="@color/colorOverlayAccent"
+                            android:textSize="@dimen/common_font_title"
+                            android:text='@{viewModel.phoneNum}'
+                            tools:text="01012341234"
+                            android:fontFamily="@font/notosans_medium"/>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_join"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="30dp"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintTop_toBottomOf="@id/tv_phonenum_join"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            tools:layout_editor_absoluteY="0dp">
+
+                            <TextView
+                                android:id="@+id/tv_subtitle_birthday"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/login_subtitle_birtday"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+
+                            <EditText
+                                android:id="@+id/et_bitrhday"
+                                android:layout_width="0dp"
+                                android:layout_height="43dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:background="@android:color/transparent"
+                                android:hint="@string/login_hint_birth"
+                                android:textSize="@dimen/common_font_title"
+                                android:textColor="@color/colorOverlayAccent"
+                                android:maxLength="6"
+                                android:fontFamily="@font/notosans_medium"
+                                app:layout_constraintHorizontal_weight="1"
+                                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_birthday"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:inputType="number" />
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="2dp"
+                                android:background="@color/gray1"
+                                app:layout_constraintTop_toBottomOf="@id/et_bitrhday"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"/>
+
+                            <TextView
+                                android:id="@+id/tv_subtitle_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/login_subtitle_gender"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/et_bitrhday" />
+
+                            <EditText
+                                android:id="@+id/et_name"
+                                android:layout_width="0dp"
+                                android:layout_height="43dp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:background="@android:color/transparent"
+                                android:hint="@string/login_hint_name"
+                                android:textSize="@dimen/common_font_title"
+                                android:textColor="@color/colorOverlayAccent"
+                                android:maxLength="10"
+                                android:fontFamily="@font/notosans_medium"
+                                app:layout_constraintHorizontal_weight="1"
+                                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_name"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:inputType="text" />
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="2dp"
+                                android:background="@color/gray1"
+                                app:layout_constraintTop_toBottomOf="@id/et_name"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"/>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
 
@@ -404,7 +525,6 @@
                         android:id="@+id/btn_agree"
                         android:layout_width="21dp"
                         android:layout_height="21dp"
-                        android:visibility="gone"
                         android:background="@drawable/check_selector"
                         android:onClick='@{activity::onCheckButtonClick}'
                         android:layout_marginLeft="21dp"
@@ -415,7 +535,6 @@
                     <TextView
                         android:id="@+id/tv_terms"
                         android:layout_width="0dp"
-                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="25dp"
@@ -433,7 +552,6 @@
                     <TextView
                         android:id="@+id/tv_agree_desc"
                         android:layout_width="0dp"
-                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:textSize="@dimen/main_font_extra"
