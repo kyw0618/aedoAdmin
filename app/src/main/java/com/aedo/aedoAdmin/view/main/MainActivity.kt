@@ -22,11 +22,11 @@ class MainActivity : BaseActivity() {
         inStatusBar()
     }
 
-    fun onMakeClick(v: View) {
+    fun onMainList(v: View) {
 
     }
 
-    fun onSendClick(v: View) {
+    fun onMainNotice(v: View) {
 
     }
 
@@ -39,14 +39,11 @@ class MainActivity : BaseActivity() {
     }
 
     fun onShopClick(v: View) {
-
+        moveOrder()
     }
 
-    fun onSetting(v: View) {
-
+    fun onUserList(v: View) {
+        moveUser()
     }
 
-    fun onNoticeCLick(v: View) {
-
-    }
 }

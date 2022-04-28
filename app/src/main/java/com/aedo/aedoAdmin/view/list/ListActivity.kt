@@ -1,5 +1,6 @@
 package com.aedo.aedoAdmin.view.list
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -9,6 +10,7 @@ import com.aedo.aedoAdmin.api.ApiUtils
 import com.aedo.aedoAdmin.databinding.ActivityListBinding
 import com.aedo.aedoAdmin.databinding.ActivityMainBinding
 import com.aedo.aedoAdmin.util.base.BaseActivity
+import com.aedo.aedoAdmin.view.main.MainActivity
 
 class ListActivity : BaseActivity() {
     private lateinit var mBinding : ActivityListBinding
@@ -20,5 +22,10 @@ class ListActivity : BaseActivity() {
         mBinding.activity = this
         apiServices = ApiUtils.apiService
 
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

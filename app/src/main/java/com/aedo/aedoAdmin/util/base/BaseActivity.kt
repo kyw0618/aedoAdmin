@@ -22,6 +22,8 @@ import com.aedo.aedoAdmin.util.`object`.ActivityControlManager
 import com.aedo.aedoAdmin.util.common.CommonData
 import com.aedo.aedoAdmin.util.log.LLog.e
 import com.aedo.aedoAdmin.view.main.MainActivity
+import com.aedo.aedoAdmin.view.order.OrderActivity
+import com.aedo.aedoAdmin.view.user.UserActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.one_button_dialog.view.*
 import kotlinx.android.synthetic.main.two_button_dialog.view.*
@@ -337,6 +339,20 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun moveMain() {
         val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveUser() {
+        val intent = Intent(this, UserActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveOrder() {
+        val intent = Intent(this, OrderActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
         finish()

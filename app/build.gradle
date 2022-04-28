@@ -15,7 +15,6 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -23,6 +22,18 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            ndk {
+                debugSymbolLevel 'FULL'
+            }
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFile 'proguard-debug.pro'
+            ndk {
+                debugSymbolLevel 'FULL'
+            }
         }
     }
     compileOptions {
@@ -50,6 +61,10 @@ android {
     }
     androidExtensions {
         experimental = true
+    }
+    lintOptions{
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
