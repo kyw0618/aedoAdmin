@@ -27,7 +27,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun onMainNotice(v: View) {
-
+        moveNotice()
     }
 
     fun onCenterClick(v: View) {

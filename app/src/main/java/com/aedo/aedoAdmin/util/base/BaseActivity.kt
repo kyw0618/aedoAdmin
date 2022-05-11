@@ -22,6 +22,7 @@ import com.aedo.aedoAdmin.util.`object`.ActivityControlManager
 import com.aedo.aedoAdmin.util.common.CommonData
 import com.aedo.aedoAdmin.util.log.LLog.e
 import com.aedo.aedoAdmin.view.main.MainActivity
+import com.aedo.aedoAdmin.view.notice.NoticeActivity
 import com.aedo.aedoAdmin.view.order.OrderActivity
 import com.aedo.aedoAdmin.view.user.UserActivity
 import io.realm.Realm
@@ -353,6 +354,13 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun moveOrder() {
         val intent = Intent(this, OrderActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveNotice() {
+        val intent = Intent(this, NoticeActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
         finish()

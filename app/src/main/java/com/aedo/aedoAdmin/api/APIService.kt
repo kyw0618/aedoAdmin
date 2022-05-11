@@ -6,6 +6,7 @@ import com.aedo.aedoAdmin.model.login.AutoLogin
 import com.aedo.aedoAdmin.model.login.LoginSMS
 import com.aedo.aedoAdmin.model.login.LoginSend
 import com.aedo.aedoAdmin.model.login.UserModel
+import com.aedo.aedoAdmin.model.notice.NoticeModel
 import com.aedo.aedoAdmin.model.order.OrderModel
 import retrofit2.Call
 import retrofit2.http.*
@@ -39,4 +40,8 @@ interface APIService {
     //주문정보
     @GET("v1/order")
     fun getOrder(@Header("Accesstoken")accesstoken: String?): Call<OrderModel>
+
+    // 공지사항 모두조회 API
+    @GET("v1/center/announcement")
+    fun getNoti(@Header("Accesstoken") accesstoken: String?): Call<NoticeModel>
 }
