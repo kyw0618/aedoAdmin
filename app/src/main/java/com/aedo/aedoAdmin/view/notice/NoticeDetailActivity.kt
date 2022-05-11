@@ -19,6 +19,8 @@ class NoticeDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_notice_detail)
         mBinding.activity = this
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
         initView()
     }

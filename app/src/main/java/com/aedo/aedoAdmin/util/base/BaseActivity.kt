@@ -363,4 +363,18 @@ open class BaseActivity : AppCompatActivity() {
         overridePendingTransition(0, 0)
         finish()
     }
+
+    internal fun moveList() {
+        val intent = Intent(this, ListActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveNotice() {
+        val intent = Intent(this, NoticeActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
 }

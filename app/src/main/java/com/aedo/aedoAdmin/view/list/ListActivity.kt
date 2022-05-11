@@ -37,6 +37,8 @@ class ListActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_list) //view와 연결
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
         inRecycler()
     }
@@ -44,7 +46,6 @@ class ListActivity : BaseActivity() {
     private fun inRecycler() {
         LLog.e("부고조회_첫번째 API")
         val vercall: Call<RecyclerList> = apiServices.getObituary("",prefs.myaccesstoken)
-
         vercall.enqueue(object : Callback<RecyclerList> {
             override fun onResponse(call: Call<RecyclerList>, response: Response<RecyclerList>) {
                 val result = response.body()
@@ -84,6 +85,7 @@ class ListActivity : BaseActivity() {
             }
         })
     }
+
     private fun setAdapter(obituary: List<Obituary>?){
         val mAdapter = obituary?.let {
             ObituaryRecyclerAdapter(it,this)
@@ -94,6 +96,7 @@ class ListActivity : BaseActivity() {
         mBinding.recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         return
     }
+
     fun onMainClick(v: View) {
         moveMain()
     }

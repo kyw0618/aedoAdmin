@@ -44,26 +44,26 @@ interface APIService {
     @GET("v1/order")
     fun getOrder(@Header("Accesstoken")accesstoken: String?): Call<OrderModel>
 
-<<<<<<< HEAD
+
     // 공지사항 모두조회 API
     @GET("v1/center/announcement")
     fun getNoti(@Header("Accesstoken") accesstoken: String?): Call<NoticeModel>
-=======
+
     // 부고조회
     @GET("v1/obituary")
     fun getObituary(@Query("name")name: String?,
                       @Header("Accesstoken")accesstoken: String?) : Call<RecyclerList>
 
-    //부고 이미지 받기
-    @Streaming
+    //부고 이미지 받기API
     @GET("v1/obituary/image")
-    fun getImg(@Query("imgname")imgname: String?,
-               @Header("Accesstoken")accesstoken: String?) : Call<ResponseBody>
+    @Streaming
+    fun getImg(@Query("imgname") imgname: String?,
+               @Header("Accesstoken") accesstoken: String?) : Call<ResponseBody>
 
     // 조문메세지 조회
     @GET("v1/condole")
     fun getConID(@Query("id")id: String? ,
                  @Header("Accesstoken")accesstoken: String?) : Call<Condole>
 
->>>>>>> origin/obituary_list
+
 }

@@ -19,6 +19,8 @@ class MainActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
     }
 
@@ -28,14 +30,6 @@ class MainActivity : BaseActivity() {
 
     fun onMainNotice(v: View) {
         moveNotice()
-    }
-
-    fun onCenterClick(v: View) {
-
-    }
-
-    fun onSearchClick(v: View) {
-
     }
 
     fun onShopClick(v: View) {

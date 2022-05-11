@@ -2,7 +2,7 @@ package com.aedo.aedoAdmin.view.list
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -55,7 +55,6 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 
 class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
 
@@ -69,6 +68,8 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_listdetail)
         mBinding.activity =  this@ListDetailActivity  //activity_listdetail variable 수정
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         //dialog = LoadingDialog(this)   //util/alert/LoadingDialog
         inStatusBar()
         inRecycler()
@@ -308,37 +309,38 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         LLog.e("이미지 API")
         LLog.e("이미지 $img")
         LLog.e("이미지 ${prefs.myaccesstoken}")
+
         val vercall: Call<ResponseBody> = apiServices.getImg(img,prefs.myaccesstoken)
         vercall.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 val result = response.body()
                 Log.d(LLog.TAG,"ListImg  response -> $response")
-                if (response.isSuccessful){ //&& result != null) {
+                if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"ListImg  response SUCCESS -> $result")
-//                    Thread {
-//                        try {
-//                            val imgs = result.byteStream()
-//                            val bit = BitmapFactory.decodeStream(imgs)
-//                            mBinding.imgPerson.setImageBitmap(bit)
-//                            mBinding.imgPerson.setOnClickListener {
-//                                val myLayout = layoutInflater.inflate(R.layout.view_item_img, null)
-//                                val build = AlertDialog.Builder(this@ListDetailActivity).apply {
-//                                    setView(myLayout)
-//                                }
-//                                val textView : ImageView = myLayout.findViewById(R.id.data_detail_img)
-//                                textView.setImageBitmap(bit)
-//                                val dialog = build.create()
-//                                dialog.show()
-//
-//                                myLayout.img_finish.setOnClickListener {
-//                                    dialog.dismiss()
-//                                }
-//                            }
-//                        }
-//                        catch (e: Exception) {
-//
-//                        }
-//                    }.start()
+                    Thread {
+                        try {
+                            val imgs = result.byteStream()
+                            val bit = BitmapFactory.decodeStream(imgs)
+                            mBinding.imgPerson.setImageBitmap(bit)
+                            mBinding.imgPerson.setOnClickListener {
+                                val myLayout = layoutInflater.inflate(R.layout.view_item_img, null)
+                                val build = android.app.AlertDialog.Builder(this@ListDetailActivity).apply {
+                                    setView(myLayout)
+                                }
+                                val textView : ImageView = myLayout.findViewById(R.id.data_detail_img)
+                                textView.setImageBitmap(bit)
+                                val dialog = build.create()
+                                dialog.show()
+
+                                myLayout.img_finish.setOnClickListener {
+                                    dialog.dismiss()
+                                }
+                            }
+                        }
+                        catch (e: java.lang.Exception) {
+
+                        }
+                    }.start()
                 }
                 else {
                     Log.d(LLog.TAG,"ListImg  response ERROR -> $result")
@@ -360,16 +362,30 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                 Log.d(LLog.TAG,"ListImg Second response -> $response")
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"ListImg Second response SUCCESS -> $result")
-//                    Thread {
-//                        try {
-//                            val imgs = result.byteStream()
-//                            val bit = BitmapFactory.decodeStream(imgs)
-//                            mBinding.imgPerson.setImageBitmap(bit)
-//                        }
-//                        catch (e: Exception) {
-//
-//                        }
-//                    }.start()
+                    Thread {
+                        try {
+                            val imgs = result.byteStream()
+                            val bit = BitmapFactory.decodeStream(imgs)
+                            mBinding.imgPerson.setImageBitmap(bit)
+                            mBinding.imgPerson.setOnClickListener {
+                                val myLayout = layoutInflater.inflate(R.layout.view_item_img, null)
+                                val build = android.app.AlertDialog.Builder(this@ListDetailActivity).apply {
+                                    setView(myLayout)
+                                }
+                                val textView : ImageView = myLayout.findViewById(R.id.data_detail_img)
+                                textView.setImageBitmap(bit)
+                                val dialog = build.create()
+                                dialog.show()
+
+                                myLayout.img_finish.setOnClickListener {
+                                    dialog.dismiss()
+                                }
+                            }
+                        }
+                        catch (e: java.lang.Exception) {
+
+                        }
+                    }.start()
                 }
                 else {
                     Log.d(LLog.TAG,"ListImg Second response ERROR -> $result")

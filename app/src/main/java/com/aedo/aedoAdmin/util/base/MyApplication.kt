@@ -1,6 +1,7 @@
 package com.aedo.aedoAdmin.util.base
 
 import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.Application
 import android.os.Bundle
 import com.aedo.aedoAdmin.util.common.CommonData
@@ -40,6 +41,7 @@ class MyApplication : Application() {
         commonData.numStarted = 0
 
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+
             override fun onActivityCreated(p0: Activity, p1: Bundle?) {
             }
 
@@ -48,8 +50,7 @@ class MyApplication : Application() {
                     commonData.isMainRefresh = true
                     commonData.isForeground = true
                 }
-                commonData.numStarted++
-            }
+                commonData.numStarted++            }
 
             override fun onActivityResumed(p0: Activity) {
             }
@@ -61,8 +62,7 @@ class MyApplication : Application() {
                 commonData.numStarted--
                 if (commonData.numStarted == 0) {
                     commonData.isForeground = false
-                }
-            }
+                }            }
 
             override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {
             }

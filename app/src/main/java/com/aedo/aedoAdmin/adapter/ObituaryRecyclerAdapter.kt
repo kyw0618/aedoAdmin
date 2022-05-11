@@ -28,7 +28,8 @@ import com.aedo.aedoAdmin.util.`object`.Constant.TAG
 import com.aedo.aedoAdmin.util.base.MyApplication.Companion.prefs
 import com.aedo.aedoAdmin.view.list.ListDetailActivity
 
-class ObituaryRecyclerAdapter(private val postList: List<Obituary>, val context: Context): RecyclerView.Adapter<ObituaryRecyclerAdapter.ViewHolder>() {
+class ObituaryRecyclerAdapter(private val postList: List<Obituary>, val context: Context)
+    : RecyclerView.Adapter<ObituaryRecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -42,6 +43,7 @@ class ObituaryRecyclerAdapter(private val postList: List<Obituary>, val context:
             itemClickListener?.onClick(it,position)
         }
     }
+
     //데이터 개수 반환
     override fun getItemCount(): Int {
         return postList.count()
@@ -60,7 +62,6 @@ class ObituaryRecyclerAdapter(private val postList: List<Obituary>, val context:
         val tx_body_name  = itemView?.findViewById<TextView>(R.id.tx_body_name)  //상주
         val tx_body_info =   itemView?.findViewById<TextView>(R.id.tx_body_info) //빈소
         val btn_show = itemView?.findViewById<Button>(R.id.btn_list_show)  //부고 보기
-        val imgname = itemView?.findViewById<ImageView>(R.id.list_img)
 
         @SuppressLint("ResourceType")
         fun bind(itemPhoto : Obituary?, context: Context){
