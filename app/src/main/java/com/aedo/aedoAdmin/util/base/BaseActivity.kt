@@ -21,6 +21,8 @@ import com.aedo.aedoAdmin.R
 import com.aedo.aedoAdmin.util.`object`.ActivityControlManager
 import com.aedo.aedoAdmin.util.common.CommonData
 import com.aedo.aedoAdmin.util.log.LLog.e
+import com.aedo.aedoAdmin.view.list.ListActivity
+import com.aedo.aedoAdmin.view.list.ListDetailActivity
 import com.aedo.aedoAdmin.view.main.MainActivity
 import com.aedo.aedoAdmin.view.order.OrderActivity
 import com.aedo.aedoAdmin.view.user.UserActivity
@@ -357,5 +359,19 @@ open class BaseActivity : AppCompatActivity() {
         overridePendingTransition(0, 0)
         finish()
     }
+
+    internal fun moveList() {
+        val intent = Intent(this, ListActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+//    internal fun moveListDetail() {
+//        val intent = Intent(this, ListDetailActivity::class.java)
+//        startActivity(intent)
+//        overridePendingTransition(0, 0)
+//        finish()
+//    }
 
 }

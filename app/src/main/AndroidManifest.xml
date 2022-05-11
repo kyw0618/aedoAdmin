@@ -44,6 +44,9 @@
             android:name=".view.notice.NoticeActivity"
             android:exported="false" />
         <activity
+            android:name=".view.list.ListDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.list.ListActivity"
             android:exported="false" />
         <activity
@@ -58,6 +61,9 @@
         <activity
             android:name=".view.intro.SplashActivity"
             android:exported="false" />
+        <activity
+            android:name=".view.list.MessageActivity"
+            android:exported="false"/>
         <activity android:name=".util.base.BaseActivity" />
         <activity
             android:name=".util.activity.ActivityController"
