@@ -2,12 +2,15 @@ package com.aedo.aedoAdmin.api
 
 import com.aedo.aedoAdmin.model.intro.AppPolicy
 import com.aedo.aedoAdmin.model.intro.Verification
+import com.aedo.aedoAdmin.model.list.Condole
+import com.aedo.aedoAdmin.model.list.RecyclerList
 import com.aedo.aedoAdmin.model.login.AutoLogin
 import com.aedo.aedoAdmin.model.login.LoginSMS
 import com.aedo.aedoAdmin.model.login.LoginSend
 import com.aedo.aedoAdmin.model.login.UserModel
 import com.aedo.aedoAdmin.model.notice.NoticeModel
 import com.aedo.aedoAdmin.model.order.OrderModel
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -41,7 +44,26 @@ interface APIService {
     @GET("v1/order")
     fun getOrder(@Header("Accesstoken")accesstoken: String?): Call<OrderModel>
 
+<<<<<<< HEAD
     // 공지사항 모두조회 API
     @GET("v1/center/announcement")
     fun getNoti(@Header("Accesstoken") accesstoken: String?): Call<NoticeModel>
+=======
+    // 부고조회
+    @GET("v1/obituary")
+    fun getObituary(@Query("name")name: String?,
+                      @Header("Accesstoken")accesstoken: String?) : Call<RecyclerList>
+
+    //부고 이미지 받기
+    @Streaming
+    @GET("v1/obituary/image")
+    fun getImg(@Query("imgname")imgname: String?,
+               @Header("Accesstoken")accesstoken: String?) : Call<ResponseBody>
+
+    // 조문메세지 조회
+    @GET("v1/condole")
+    fun getConID(@Query("id")id: String? ,
+                 @Header("Accesstoken")accesstoken: String?) : Call<Condole>
+
+>>>>>>> origin/obituary_list
 }

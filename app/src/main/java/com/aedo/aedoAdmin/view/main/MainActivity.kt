@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun onMainList(v: View) {
-
+        moveList()
     }
 
     fun onMainNotice(v: View) {

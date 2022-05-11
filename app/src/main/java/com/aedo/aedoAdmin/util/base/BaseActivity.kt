@@ -21,6 +21,8 @@ import com.aedo.aedoAdmin.R
 import com.aedo.aedoAdmin.util.`object`.ActivityControlManager
 import com.aedo.aedoAdmin.util.common.CommonData
 import com.aedo.aedoAdmin.util.log.LLog.e
+import com.aedo.aedoAdmin.view.list.ListActivity
+import com.aedo.aedoAdmin.view.list.ListDetailActivity
 import com.aedo.aedoAdmin.view.main.MainActivity
 import com.aedo.aedoAdmin.view.notice.NoticeActivity
 import com.aedo.aedoAdmin.view.order.OrderActivity
@@ -359,11 +361,26 @@ open class BaseActivity : AppCompatActivity() {
         finish()
     }
 
+<<<<<<< HEAD
     internal fun moveNotice() {
         val intent = Intent(this, NoticeActivity::class.java)
+=======
+    internal fun moveList() {
+        val intent = Intent(this, ListActivity::class.java)
+>>>>>>> origin/obituary_list
         startActivity(intent)
         overridePendingTransition(0, 0)
         finish()
     }
 
+<<<<<<< HEAD
+=======
+//    internal fun moveListDetail() {
+//        val intent = Intent(this, ListDetailActivity::class.java)
+//        startActivity(intent)
+//        overridePendingTransition(0, 0)
+//        finish()
+//    }
+
+>>>>>>> origin/obituary_list
 }
