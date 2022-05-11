@@ -322,20 +322,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                             val imgs = result.byteStream()
                             val bit = BitmapFactory.decodeStream(imgs)
                             mBinding.imgPerson.setImageBitmap(bit)
-                            mBinding.imgPerson.setOnClickListener {
-                                val myLayout = layoutInflater.inflate(R.layout.view_item_img, null)
-                                val build = android.app.AlertDialog.Builder(this@ListDetailActivity).apply {
-                                    setView(myLayout)
-                                }
-                                val textView : ImageView = myLayout.findViewById(R.id.data_detail_img)
-                                textView.setImageBitmap(bit)
-                                val dialog = build.create()
-                                dialog.show()
-
-                                myLayout.img_finish.setOnClickListener {
-                                    dialog.dismiss()
-                                }
-                            }
                         }
                         catch (e: java.lang.Exception) {
 
@@ -367,20 +353,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                             val imgs = result.byteStream()
                             val bit = BitmapFactory.decodeStream(imgs)
                             mBinding.imgPerson.setImageBitmap(bit)
-                            mBinding.imgPerson.setOnClickListener {
-                                val myLayout = layoutInflater.inflate(R.layout.view_item_img, null)
-                                val build = android.app.AlertDialog.Builder(this@ListDetailActivity).apply {
-                                    setView(myLayout)
-                                }
-                                val textView : ImageView = myLayout.findViewById(R.id.data_detail_img)
-                                textView.setImageBitmap(bit)
-                                val dialog = build.create()
-                                dialog.show()
-
-                                myLayout.img_finish.setOnClickListener {
-                                    dialog.dismiss()
-                                }
-                            }
                         }
                         catch (e: java.lang.Exception) {
 
