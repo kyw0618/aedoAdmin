@@ -21,7 +21,10 @@ import com.aedo.aedoAdmin.R
 import com.aedo.aedoAdmin.util.`object`.ActivityControlManager
 import com.aedo.aedoAdmin.util.common.CommonData
 import com.aedo.aedoAdmin.util.log.LLog.e
+import com.aedo.aedoAdmin.view.list.ListActivity
+import com.aedo.aedoAdmin.view.list.ListDetailActivity
 import com.aedo.aedoAdmin.view.main.MainActivity
+import com.aedo.aedoAdmin.view.notice.NoticeActivity
 import com.aedo.aedoAdmin.view.order.OrderActivity
 import com.aedo.aedoAdmin.view.user.UserActivity
 import io.realm.Realm
@@ -32,11 +35,11 @@ import java.security.NoSuchAlgorithmException
 import java.util.*
 
 open class BaseActivity : AppCompatActivity() {
-    internal open var instance: BaseActivity?=null
+    internal open var instance: BaseActivity? = null
     var ResultView: ActivityResultLauncher<Intent>? = null
     var comm: CommonData? = CommonData().getInstance()
 
-    internal var dialog : Dialog ?= null
+    internal var dialog: Dialog? = null
 
     internal val realm by lazy {
         Realm.getDefaultInstance()
@@ -46,7 +49,10 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState, persistentState)
         instance = this
         val window = window
-        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
     }
 
     internal fun inStatusBar() {
@@ -61,8 +67,8 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if(isInternetAvailable(this)) {
-            Log.d(TAG,"네트워크 연결중")
+        if (isInternetAvailable(this)) {
+            Log.d(TAG, "네트워크 연결중")
         } else {
             networkDialog()
             return
@@ -190,7 +196,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
+        val textView: TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.server_check)
         val dialog = build.create()
         dialog.show()
@@ -207,7 +213,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
+        val textView: TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.network_check)
         val dialog = build.create()
         dialog.show()
@@ -223,7 +229,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
+        val textView: TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.warning_rooting)
         val dialog = build.create()
         dialog.show()
@@ -239,7 +245,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
+        val textView: TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.auth_num_wrong_text)
         val dialog = build.create()
         dialog.show()
@@ -254,7 +260,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
+        val textView: TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.admin_check)
         val dialog = build.create()
         dialog.show()
@@ -269,7 +275,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
+        val textView: TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.term_check)
         val dialog = build.create()
         dialog.show()
@@ -284,7 +290,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
+        val textView: TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.phone_check)
         val dialog = build.create()
         dialog.show()
@@ -299,7 +305,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_second)
+        val textView: TextView = myLayout.findViewById(R.id.popTv_second)
         textView.text = getString(R.string.update_check)
         val dialog = build.create()
         dialog.show()
@@ -319,7 +325,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_second)
+        val textView: TextView = myLayout.findViewById(R.id.popTv_second)
         textView.text = getString(R.string.list_delete)
         val dialog = build.create()
         dialog.show()
@@ -358,4 +364,17 @@ open class BaseActivity : AppCompatActivity() {
         finish()
     }
 
+    internal fun moveList() {
+        val intent = Intent(this, ListActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveNotice() {
+        val intent = Intent(this, NoticeActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
 }

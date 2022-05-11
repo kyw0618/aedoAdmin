@@ -96,10 +96,10 @@
                         android:layout_height="55dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
-                        android:onClick='@{activity::onCenterClick}'
+                        android:onClick='@{activity::onSearchClick}'
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/main_center" />
+                        app:srcCompat="@drawable/main_search" />
 
                     <TextView
                         android:id="@+id/textView3"
@@ -136,7 +136,7 @@
                         android:layout_marginTop="6dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/noto_sans_kr_bold"
-                        android:text="고객 센터"
+                        android:text="통합 검색"
                         android:textColor="@color/white"
                         android:textSize="15dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -148,10 +148,10 @@
                         android:layout_height="55dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="136dp"
-                        android:onClick='@{activity::onSearchClick}'
+                        android:onClick='@{activity::onUserList}'
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/main_search" />
+                        app:srcCompat="@drawable/main_person" />
 
                     <ImageView
                         android:id="@+id/imageView19"
@@ -165,24 +165,13 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/main_shop" />
 
-                    <ImageView
-                        android:id="@+id/main_center"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_marginTop="136dp"
-                        android:layout_marginEnd="10dp"
-                        android:onClick='@{activity::onUserList}'
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/main_person" />
-
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="77dp"
                         android:layout_height="30dp"
                         android:fontFamily="@font/noto_sans_kr_bold"
                         android:gravity="center"
-                        android:text="통합 검색"
+                        android:text="회원 정보"
                         android:textColor="@color/white"
                         android:textSize="15dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -202,17 +191,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imageView19" />
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:text="회원정보"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/main_center" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

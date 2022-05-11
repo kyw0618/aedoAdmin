@@ -38,6 +38,8 @@ class OrderActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_order)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
         inRecycler()
     }

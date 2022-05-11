@@ -50,6 +50,8 @@ class SplashActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
         checkNetwork()
 //        moveActivity()
