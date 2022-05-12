@@ -20,9 +20,33 @@ class MainActivity : BaseActivity() {
         mBinding.activity = this
         apiServices = ApiUtils.apiService
         mBinding.lifecycleOwner = this
-
         inStatusBar()
     }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 
     fun onMainList(v: View) {
         moveList()
@@ -38,6 +62,10 @@ class MainActivity : BaseActivity() {
 
     fun onUserList(v: View) {
         moveUser()
+    }
+
+    fun onSearchClick(v: View) {
+
     }
 
 }

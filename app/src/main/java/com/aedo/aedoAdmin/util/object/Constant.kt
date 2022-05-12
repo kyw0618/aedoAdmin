@@ -49,11 +49,7 @@ object  Constant {
 
     const val LLIST_ID = "LLIST_ID"
     const val MESSAGE_LLIST_ID = "MESSAGE_LLIST_ID"
-    const val MESSAGE_DETAIL_LLIST_ID = "MESSAGE_DETAIL_LLIST_ID"
     const val LIST_IMG = "LIST_IMG"
-    const val LIST_FRAGMENT_IMG = "LIST_FRAGMENT_IMG"
-
-    const val EOD_NAME = "EOD_NAME"
     const val EOD_DATE = "EOD_DATE"
 
     const val COFFIN_DATE = "COFFIN_DATE"
@@ -64,56 +60,10 @@ object  Constant {
 
     const val BURIED = "BURIED"
 
-    //Notice
-    const val NOTICE_TITLE = "NOTICE_TITLE"
-    const val NOTICE_CONTENT = "NOTICE_CONTENT"
-    const val NOTICE_CREATED = "NOTICE_CREATED"
-
-    //Coun
-    const val COUN_NAME = "COUN_NAME"
-    const val COUN_TITLE = "COUN_TITLE"
-    const val COUN_CONTENT = "COUN_CONTENT"
-    const val COUN_CREATED = "COUN_CREATED"
-
     const val PERMISSION_REQUEST_CODE = 1000
     const val GPS_ENABLE_REQUEST_CODE = 2001
 
     const val APP_UPDATE = 700
-
-
-    //Search
-    const val SEARCH_RELATION_NAME = "SEARCH_RELATION_NAME"
-    const val SEARCH_EOD_DATA = "SEARCH_EOD_DATA"
-    const val SEARCH_DECEASED_NAME = "SEARCH_DECEASED_NAME"
-    const val SEARCH_COFFIN_DATA = "SEARCH_COFFIN_DATA"
-    const val SEARCH_DOFP_DATA = "SEARCH_DOFP_DATA"
-    const val SEARCH_BURIED = "SEARCH_BURIED"
-    const val SEARCH_PLACE = "SEARCH_PLACE"
-
-    //Shop
-    const val SHOP_FIRST = "SHOP_FIRST"
-    const val SHOP_SECOND = "SHOP_SECOND"
-    const val SHOP_THIRD = "SHOP_THIRD"
-    const val SHOP_FOUR = "SHOP_FOUR"
-
-    const val SHOP_FIVE = "SHOP_FIVE"
-    const val SHOP_SIX = "SHOP_SIX"
-    const val SHOP_SEVEN = "SHOP_SEVEN"
-
-    const val SHOP_EIGHT = "SHOP_EIGHT"
-    const val SHOP_NINE = "SHOPT_NIE"
-
-    const val SHOP_FIRST_PAY = "SHOP_FIRST_PAY"
-    const val SHOP_SECOND_PAY = "SHOP_SECOND_PAY"
-    const val SHOP_THIRD_PAY = "SHOP_THIRD_PAY"
-    const val SHOP_FOUR_PAY = "SHOP_FOUR_PAY"
-
-    const val SHOP_FIVE_PAY= "SHOP_FIVE_PAY"
-    const val SHOP_SIX_PAY = "SHOP_SIX_PAY"
-    const val SHOP_SEVEN_PAY = "SHOP_SEVEN_PAY"
-
-    const val SHOP_EIGHT_PAY = "SHOP_EIGHT_PAY"
-    const val SHOP_NINE_PAY = "SHOPT_NIE_PAY"
 
     //My Order
     const val MY_ORDER_PLACE_NAME = "MY_ORDER_PLACE_NAME"

@@ -62,7 +62,8 @@ class MyApplication : Application() {
                 commonData.numStarted--
                 if (commonData.numStarted == 0) {
                     commonData.isForeground = false
-                }            }
+                }
+            }
 
             override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {
             }
@@ -70,5 +71,6 @@ class MyApplication : Application() {
             override fun onActivityDestroyed(p0: Activity) {
             }
         })
+
     }
 }

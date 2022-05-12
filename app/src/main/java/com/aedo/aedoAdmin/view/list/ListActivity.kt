@@ -16,6 +16,7 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aedo.aedoAdmin.adapter.NoticeAdapter
 import com.aedo.aedoAdmin.adapter.ObituaryRecyclerAdapter
 import com.aedo.aedoAdmin.model.list.Obituary
 import com.aedo.aedoAdmin.model.list.RecyclerList
@@ -31,6 +32,7 @@ import retrofit2.Response
 class ListActivity : BaseActivity() {
     private lateinit var mBinding : ActivityListBinding
     private lateinit var apiServices: APIService  //클래스 APIService 객체
+    private var obituaryRecyclerAdapter: ObituaryRecyclerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,5 +105,11 @@ class ListActivity : BaseActivity() {
 
     fun onBackClick(v: View) {
         moveMain()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onResume() {
+        super.onResume()
+        obituaryRecyclerAdapter?.notifyDataSetChanged()
     }
 }
